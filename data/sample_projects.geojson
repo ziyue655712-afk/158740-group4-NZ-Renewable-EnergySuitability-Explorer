@@ -1,0 +1,111 @@
+{
+  "type": "FeatureCollection",
+  "name": "sample_projects",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Auckland Rooftop Solar Cluster",
+        "energy_type": "Solar",
+        "status": "Concept",
+        "region": "Auckland",
+        "suitability_level": "Medium",
+        "source": "Sample planning dataset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [174.7633, -36.8485]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Waikato Utility Solar Site",
+        "energy_type": "Solar",
+        "status": "Screening",
+        "region": "Waikato",
+        "suitability_level": "High",
+        "source": "Sample planning dataset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [175.2793, -37.7870]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Taupo Geothermal-Solar Hybrid Study",
+        "energy_type": "Solar",
+        "status": "Feasibility",
+        "region": "Waikato",
+        "suitability_level": "High",
+        "source": "Sample planning dataset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [176.0702, -38.6857]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Taranaki Coastal Wind Prospect",
+        "energy_type": "Wind",
+        "status": "Screening",
+        "region": "Taranaki",
+        "suitability_level": "High",
+        "source": "Sample planning dataset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [174.0752, -39.0556]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Wellington Ridge Wind Extension",
+        "energy_type": "Wind",
+        "status": "Concept",
+        "region": "Wellington",
+        "suitability_level": "Medium",
+        "source": "Sample planning dataset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [174.7762, -41.2865]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Canterbury Plains Solar Farm",
+        "energy_type": "Solar",
+        "status": "Feasibility",
+        "region": "Canterbury",
+        "suitability_level": "High",
+        "source": "Sample planning dataset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [172.6362, -43.5321]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Otago Upland Wind Assessment",
+        "energy_type": "Wind",
+        "status": "Early investigation",
+        "region": "Otago",
+        "suitability_level": "Low",
+        "source": "Sample planning dataset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [170.5028, -45.8788]
+      }
+    }
+  ]
+}

@@ -1,0 +1,286 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NZ Renewable Energy Suitability Explorer</title>
+
+  <!-- Local Leaflet files support school VM demos without CDN access. -->
+  <link rel="stylesheet" href="lib/leaflet/leaflet.css">
+  <link rel="stylesheet" href="styles.css?v=20260528-ui-polish">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Dashboard controls">
+      <header class="brand-panel">
+        <p class="eyebrow">WebGIS Dashboard</p>
+        <h1>NZ Renewable Energy Suitability Explorer</h1>
+      </header>
+
+      <section class="panel stats-panel" aria-label="Project summary">
+        <div class="stat-card">
+          <span class="stat-value" id="totalProjects">0</span>
+          <span class="stat-label">Total GIR points</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value" id="solarProjects">0</span>
+          <span class="stat-label">Solar GIR points</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value" id="windProjects">0</span>
+          <span class="stat-label">Wind GIR points</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value" id="highSuitabilityAreas">0</span>
+          <span class="stat-label">Mixed GIR points</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value" id="girMentions">0</span>
+          <span class="stat-label">Unique GIR locations</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value" id="activeLayers">0</span>
+          <span class="stat-label">Active layers</span>
+        </div>
+      </section>
+      <section class="panel chart-panel" aria-label="Dashboard chart">
+        <h2>Dashboard chart</h2>
+        <div class="bar-row">
+          <span class="bar-label">Solar GIR</span>
+          <div class="bar-track">
+            <span class="bar-fill solar-bar" id="solarProjectsBar"></span>
+          </div>
+          <span class="bar-value" id="solarProjectsBarValue">0</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">Wind GIR</span>
+          <div class="bar-track">
+            <span class="bar-fill wind-bar" id="windProjectsBar"></span>
+          </div>
+          <span class="bar-value" id="windProjectsBarValue">0</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">Mixed GIR</span>
+          <div class="bar-track">
+            <span class="bar-fill gir-bar" id="girMentionsBar"></span>
+          </div>
+          <span class="bar-value" id="girMentionsBarValue">0</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">Renewable GIR</span>
+          <div class="bar-track">
+            <span class="bar-fill renewable-bar" id="renewableGirBar"></span>
+          </div>
+          <span class="bar-value" id="renewableGirBarValue">0</span>
+        </div>
+      </section>
+      <section class="panel ranking-panel" aria-label="Top candidate rankings">
+        <h2>Top candidate rankings</h2>
+        <div class="ranking-tabs" role="tablist" aria-label="Candidate ranking type">
+          <button type="button" class="ranking-tab is-active" data-ranking-type="All" aria-pressed="true">All</button>
+          <button type="button" class="ranking-tab" data-ranking-type="Solar" aria-pressed="false">Solar</button>
+          <button type="button" class="ranking-tab" data-ranking-type="Wind" aria-pressed="false">Wind</button>
+        </div>
+        <p class="inline-note ranking-note" id="rankingNote" aria-live="polite"></p>
+        <div class="ranking-list" id="rankingList"></div>
+      </section>
+      <section class="panel" aria-label="Search locations">
+        <h2>Search</h2>
+        <div class="search-row">
+          <input id="locationSearch" type="search" placeholder="Auckland, Taupo, Wellington" list="locationOptions" autocomplete="off">
+          <button id="searchButton" type="button">Go</button>
+        </div>
+        <datalist id="locationOptions">
+          <option value="Auckland"></option>
+          <option value="Northland"></option>
+          <option value="Kaitaia"></option>
+          <option value="Whangarei"></option>
+          <option value="Whang膩rei"></option>
+          <option value="Waiuku"></option>
+          <option value="Papakura"></option>
+          <option value="Karaka"></option>
+          <option value="Waikato"></option>
+          <option value="Hamilton"></option>
+          <option value="Cambridge"></option>
+          <option value="Taupo"></option>
+          <option value="Taup艒"></option>
+          <option value="Wairakei"></option>
+          <option value="Taranaki"></option>
+          <option value="New Plymouth"></option>
+          <option value="Port Taranaki"></option>
+          <option value="Wellington"></option>
+          <option value="Wairarapa"></option>
+          <option value="Lower Hutt"></option>
+          <option value="Upper Hutt"></option>
+          <option value="Porirua"></option>
+          <option value="Manawat奴-Whanganui"></option>
+          <option value="Manawatu-Whanganui"></option>
+          <option value="Palmerston North"></option>
+          <option value="Foxton"></option>
+          <option value="Whanganui"></option>
+          <option value="Taumarunui"></option>
+          <option value="Ashhurst"></option>
+          <option value="Bunnythorpe"></option>
+          <option value="Gisborne"></option>
+          <option value="Canterbury"></option>
+          <option value="Christchurch"></option>
+          <option value="Rangiora"></option>
+          <option value="Waimakariri"></option>
+          <option value="Ashburton"></option>
+          <option value="Waipara"></option>
+          <option value="Otago"></option>
+          <option value="Dunedin"></option>
+          <option value="Queenstown"></option>
+          <option value="Southland"></option>
+          <option value="Invercargill"></option>
+          <option value="Stewart Island"></option>
+          <option value="Rakiura"></option>
+          <option value="White Hill"></option>
+        </datalist><p class="inline-note" id="searchMessage" aria-live="polite"></p>
+      </section>
+
+      <section class="panel" aria-label="Attribute filters">
+        <h2>Filters</h2>
+        <label for="energyFilter">Energy type</label>
+        <select id="energyFilter">
+          <option value="All">All</option>
+          <option value="Solar">Solar</option>
+          <option value="Wind">Wind</option>
+        </select>
+
+        <label for="regionFilter">Region</label>
+        <select id="regionFilter">
+          <option value="All">All</option>
+          <option value="Auckland">Auckland</option>
+          <option value="Northland">Northland</option>
+          <option value="Waikato">Waikato</option>
+          <option value="Taranaki">Taranaki</option>
+          <option value="Wellington">Wellington</option>
+          <option value="Manawat奴-Whanganui">Manawat奴-Whanganui</option>
+          <option value="Canterbury">Canterbury</option>
+          <option value="Otago">Otago</option>
+          <option value="Southland">Southland</option>
+        </select>
+      </section>
+
+      <section class="panel" aria-label="Layer controls">
+        <h2>Layers</h2>
+        <label class="toggle-row">
+          <input type="checkbox" class="layer-toggle" data-layer-key="context" checked>
+          <span>Local NZ context</span>
+        </label>
+        <label class="toggle-row">
+          <input type="checkbox" class="layer-toggle" data-layer-key="osmBase" checked>
+          <span>OpenStreetMap online basemap</span>
+        </label>
+        <label class="toggle-row">
+          <input type="checkbox" class="layer-toggle" data-layer-key="solarCandidates">
+          <span>Solar Top 10 candidates</span>
+        </label>
+        <label class="toggle-row">
+          <input type="checkbox" class="layer-toggle" data-layer-key="windCandidates">
+          <span>Wind Top 10 candidates</span>
+        </label>
+        <label class="toggle-row">
+          <input type="checkbox" class="layer-toggle" data-layer-key="transmissionLines">
+          <span>Transmission lines</span>
+        </label>
+        <label class="toggle-row">
+          <input type="checkbox" class="layer-toggle" data-layer-key="postgisGirLocations">
+          <span>PostGIS GIR locations</span>
+        </label>
+        <label class="toggle-row">
+          <input type="checkbox" class="layer-toggle" data-layer-key="protectedAreas">
+          <span>Protected areas</span>
+        </label>
+        <label class="toggle-row">
+          <input type="checkbox" class="layer-toggle" data-layer-key="roads">
+          <span>Roads</span>
+        </label>
+        <label class="toggle-row">
+          <input type="checkbox" class="layer-toggle" data-layer-key="postgisSolarSuitability">
+          <span>PostGIS solar suitability</span>
+        </label>
+        <label class="toggle-row">
+          <input type="checkbox" class="layer-toggle" data-layer-key="weatherResourceSummary">
+          <span>Weather resource summary</span>
+        </label>
+        <label class="toggle-row">
+          <input type="checkbox" class="layer-toggle" data-layer-key="postgisWindSuitability">
+          <span>PostGIS wind suitability</span>
+        </label>
+      </section>
+
+      <section class="panel data-panel" aria-label="Data integration status">
+        <h2>Data status</h2>
+        <div class="status-row">
+          <span>Local context</span>
+          <strong id="localContextStatus">Waiting</strong>
+        </div>
+        <div class="status-row">
+          <span>Ranking candidates</span>
+          <strong id="rankingCandidatesStatus">Waiting</strong>
+        </div>
+        <div class="status-row">
+          <span>Evidence layers</span>
+          <strong id="evidenceLayersStatus">Waiting</strong>
+        </div>
+      </section>
+    </aside>
+
+    <main class="map-area">
+      <div id="map" aria-label="Renewable energy suitability map"></div>
+      <aside class="candidate-details-panel is-hidden" id="candidateDetailsPanel" aria-label="Candidate details" aria-live="polite">
+        <div class="candidate-details-header">
+          <div>
+            <p class="candidate-details-eyebrow">Top candidate</p>
+            <h2 id="candidateDetailsTitle">Candidate details</h2>
+          </div>
+          <button type="button" class="candidate-details-close" id="candidateDetailsClose" aria-label="Close candidate details">&times;</button>
+        </div>
+        <div class="candidate-details-content" id="candidateDetailsContent"></div>
+      </aside>
+    </main>
+  </div>
+
+  <!-- Local Leaflet JavaScript. Keep this before app.js. -->
+  <script src="lib/leaflet/leaflet.js"></script>
+  <script src="app.js?v=20260602-local-only"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

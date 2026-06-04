@@ -1,0 +1,120 @@
+{
+  "type": "FeatureCollection",
+  "name": "sample_suitability",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "suitability_type": "Solar",
+        "suitability_level": "Medium",
+        "score": 68,
+        "reason": "Good grid access and demand proximity, with mixed urban constraints."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [174.35, -36.55],
+          [175.05, -36.55],
+          [175.05, -37.15],
+          [174.35, -37.15],
+          [174.35, -36.55]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "suitability_type": "Solar",
+        "suitability_level": "High",
+        "score": 86,
+        "reason": "Strong solar resource, flatter land, and practical transmission access."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [174.95, -37.45],
+          [175.85, -37.45],
+          [175.85, -38.25],
+          [174.95, -38.25],
+          [174.95, -37.45]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "suitability_type": "Wind",
+        "suitability_level": "High",
+        "score": 82,
+        "reason": "Exposed coastal terrain and strong wind resource near existing infrastructure."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [173.65, -38.75],
+          [174.55, -38.75],
+          [174.55, -39.55],
+          [173.65, -39.55],
+          [173.65, -38.75]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "suitability_type": "Wind",
+        "suitability_level": "Medium",
+        "score": 63,
+        "reason": "Good wind resource, balanced by terrain and consenting considerations."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [174.25, -40.95],
+          [175.25, -40.95],
+          [175.25, -41.75],
+          [174.25, -41.75],
+          [174.25, -40.95]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "suitability_type": "Solar",
+        "suitability_level": "High",
+        "score": 88,
+        "reason": "Large open land parcels, high solar exposure, and nearby load centers."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [171.85, -43.05],
+          [173.05, -43.05],
+          [173.05, -44.05],
+          [171.85, -44.05],
+          [171.85, -43.05]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "suitability_type": "Wind",
+        "suitability_level": "Low",
+        "score": 41,
+        "reason": "Complex terrain and greater distance from major grid connection points."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [169.75, -45.35],
+          [170.95, -45.35],
+          [170.95, -46.25],
+          [169.75, -46.25],
+          [169.75, -45.35]
+        ]]
+      }
+    }
+  ]
+}
