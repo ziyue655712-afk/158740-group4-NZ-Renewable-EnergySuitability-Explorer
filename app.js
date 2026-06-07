@@ -74,7 +74,7 @@ const GIR_REGION_TERMS = [
   { region: "Waikato", terms: ["Waikato", "Hamilton", "Cambridge", "Taupo", "Wairakei"] },
   { region: "Taranaki", terms: ["Taranaki", "New Plymouth", "Port Taranaki"] },
   { region: "Wellington", terms: ["Wellington", "Lower Hutt", "Upper Hutt", "Porirua", "Wairarapa"] },
-  { region: "Manawat\u016B-Whanganui", terms: ["Manawatu-Whanganui", "Manawatu", "Palmerston North", "Foxton", "Whanganui", "Whanganui River", "Taumarunui", "Ngapuwaiwaha Marae", "Ashhurst", "Bunnythorpe"] },
+  { region: "Manawatu-Whanganui", terms: ["Manawatu-Whanganui", "Manawatu", "Palmerston North", "Foxton", "Whanganui", "Whanganui River", "Taumarunui", "Ngapuwaiwaha Marae", "Ashhurst", "Bunnythorpe"] },
   { region: "Canterbury", terms: ["Canterbury", "Christchurch", "Rangiora", "Waimakariri", "Swannanoa", "Ashburton", "Waipara"] },
   { region: "Otago", terms: ["Otago", "Dunedin", "Queenstown"] },
   { region: "Southland", terms: ["Southland", "Stewart Island", "Rakiura", "White Hill", "Invercargill"] }
@@ -1853,6 +1853,7 @@ function escapeHtml(value) {
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#039;");
 }
+
 
 
 
